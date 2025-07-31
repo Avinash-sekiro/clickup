@@ -7,5 +7,5 @@ npx -y @taazkareem/clickup-mcp-server@latest \
   --env ENABLE_SSE=${ENABLE_SSE} \
   --env PORT=${PORT} &
 
-# Start n8n in foreground
-n8n
+# Start n8n as PID 1
+exec n8n
