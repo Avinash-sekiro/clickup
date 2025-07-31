@@ -1,16 +1,28 @@
 version: "3.8"
 
 services:
-  app:
-    build: .
-    container_name: n8n-clickup
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
     ports:
-      - "5678:5678"     # n8n
-      - "3231:3231"     # ClickUp MCP
+      - "5678:5678"
+    environment:
+      N8N_HOST: n8n.local
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_SECURE_COOKIE: false
+    depends_on:
+      - clickup-mcp
+    restart: unless-stopped
+
+  clickup-mcp:
+    build: .
+    container_name: clickup-mcp
+    ports:
+      - "3231:3231"
     environment:
       CLICKUP_API_KEY: pk_206434044_0YU25I3G418YA0U9MSZENCCK5VPQSY59
       CLICKUP_TEAM_ID: 90161086908
       ENABLE_SSE: "true"
       PORT: 3231
-      N8N_SECURE_COOKIE: false   # Disable secure cookie for local/insecure access
     restart: unless-stopped
