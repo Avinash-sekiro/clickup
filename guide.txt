@@ -1,0 +1,4 @@
+docker setup command -> docker-compose up -d ( if not work docker-compose up --build )
+visit - > n8n: http://localhost:5678
+	  ClickUp MCP: http://localhost:3231/mcp
+then paste the workflow and groq credential 

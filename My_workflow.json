@@ -1,0 +1,113 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -400,
+        -40
+      ],
+      "id": "b284e202-ba6b-48e5-8969-f7cb848f4e4b",
+      "name": "When chat message received",
+      "webhookId": "07749946-1c5a-4cd8-9f7d-e888226238bf"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        -40
+      ],
+      "id": "d7db417e-4ca1-4784-8b78-78993ee5fdc3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3-32b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        180
+      ],
+      "id": "4bf7361b-82b0-4e6c-bf0f-cce55b7ef706",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "9iBRYJyNadIo6cKe",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "http://localhost:3231/sse"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        180
+      ],
+      "id": "e6434914-a680-4393-bd76-aecfd50d59f9",
+      "name": "MCP Client"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1d13a015-ab88-4da2-97ba-d7ec6ed64001",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4939d6249dec6d9aa725fc09bafd5e04051871cc8c82cb1ccd577c4b3ca27276"
+  },
+  "id": "WI05y9g9OxVr3mWf",
+  "tags": []
+}

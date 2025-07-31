@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: n8n-clickup
+    ports:
+      - "5678:5678"     # n8n
+      - "3231:3231"     # ClickUp MCP
+    environment:
+      CLICKUP_API_KEY: pk_206434044_0YU25I3G418YA0U9MSZENCCK5VPQSY59
+      CLICKUP_TEAM_ID: 90161086908
+      ENABLE_SSE: "true"
+      PORT: 3231
+    restart: unless-stopped
