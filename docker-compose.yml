@@ -21,8 +21,8 @@ services:
     ports:
       - "3231:3231"
     environment:
-      CLICKUP_API_KEY: pk_206434044_0YU25I3G418YA0U9MSZENCCK5VPQSY59
-      CLICKUP_TEAM_ID: 90161086908
-      ENABLE_SSE: "true"
-      PORT: 3231
+    clickupApiKey: pk_206434044_0YU25I3G418YA0U9MSZENCCK5VPQSY59
+    clickupTeamId: 90161086908
+    ENABLE_SSE: "true"
+    PORT: 3231
     restart: unless-stopped
